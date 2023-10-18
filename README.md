@@ -1,5 +1,5 @@
 # **Singly linked list**
-*Educational project*
+## *Educational project*
 
 A singly linked list is also called a linear unidirectional list. This data structure consists of elements of the same type. They are logically connected by pointers. Each list element points to the next one, and the last one points to nullptr. List elements are usually stored in dynamic memory.
 
