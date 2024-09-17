@@ -1,48 +1,48 @@
-# **Singly linked list**
-## *Educational project*
+# **Односвязный список**
+*Учебный проект*
 
-A singly linked list is also called a linear unidirectional list. This data structure consists of elements of the same type. They are logically connected by pointers. Each list element points to the next one, and the last one points to nullptr. List elements are usually stored in dynamic memory.
+Односвязный список ещё называют линейным однонаправленным списком. Эта структура данных состоит из элементов одного типа. Их логически связывают между собой указатели. Каждый элемент списка указывает на следующий, а последний — на nullptr. Хранятся элементы списка, как правило, в динамической памяти.
 
-The structure of a singly linked list is such that you can move through its elements only in a forward direction. It is impossible to find out the address of the previous element based only on the contents of the current element.
+Структура односвязного списка такова, что передвигаться по его элементам можно только в прямом направлении. Узнать адрес предыдущего элемента, опираясь лишь на содержимое текущего элемента, невозможно.
 
-**A singly linked list allows the following operations:**
-- inserting an element at the beginning or end of the list,
-- inserting an element after some list element,
-- deleting the element following this list element,
-- checking the list for emptiness,
-- determining the number of elements in the list.
+**Односвязный список допускает следующие операции:**
+- вставка элемента в начало или конец списка,
+- вставка элемента после некоторого элемента списка,
+- удаление элемента, следующего за данным элементом списка,
+- проверка списка на пустоту,
+- определение количества элементов в списке.
 
-**Advantages of a singly linked list:**
+**Достоинства односвязного списка:**
 
-insertion and deletion of an element are performed in constant time, that is, they do not depend on the number of elements and the position of the element being inserted or deleted;
-The size of the list is limited only by the amount of available memory.
+вставка и удаление элемента выполняются за константное время, то есть не зависят от количества элементов и позиции вставляемого или удаляемого элемента;
+размер списка ограничен лишь объёмом доступной памяти.
 
-**The disadvantages of a singly linked list follow from the features of its structure:**
+**Недостатки односвязного списка следуют из особенностей его структуры:**
 
-Finding out the address of an element by its serial number is an operation of linear complexity. To determine the address of the Nth element of a list, you need to sequentially iterate through all N-1 elements, starting with the first element.
-Memory waste: In addition to data, each list element stores a pointer to the next element. In addition, each time an object is created in dynamic memory, a couple of tens of bytes are spent maintaining the heap structure.
-Insertion and removal efficiency is not as high. Every insert and every delete involves a heap operation: new or delete. These operations are considered to run in constant time, but the constant can be quite large. This executes complex synchronization code between threads and may involve low-level memory mechanisms.
-Adjacent list elements may not be located sequentially in memory, reducing cache efficiency.
-
-
-The list class has developed support for iterating through the elements of the SingleLinkedList container using the BasicIterator template class, on the basis of which constant and non-const list iterators are declared.
-The list class also implements const and non-const versions of the begin and end methods, which return iterators to the first element of the container and the position after the last element. To make it convenient to obtain constant iterators, the cbegin and cend methods have been implemented.
+Узнать адрес элемента по его порядковому номеру — операция линейной сложности. Чтобы определить адрес N-го элемента списка, нужно последовательно перебрать все N-1 элементов, начиная с первого элемента.
+Неэффективное расходование памяти: помимо данных, каждый элемент списка хранит указатель на следующий элемент. Кроме того, при каждом создании объекта в динамической памяти пара десятков байт расходуется на поддержание структуры кучи.
+Не такая высокая эффективность вставки и удаления. Каждая вставка и каждое удаление обращаются к операциям работы с кучей: new или delete. Считается, что эти операции работают за константное время, однако константа может быть достаточно большой. При этом выполняется сложный код синхронизации между потоками, и могут быть задействованы низкоуровневые механизмы работы с памятью.
+Соседние элементы списка могут располагаться в памяти непоследовательно, что снижает эффективность работы кэш-памяти.
 
 
-**The singly linked list class implements the following functionality:**
-- Comparison operations ==, !=, <, >, <=, >=;
-- Exchange the contents of two lists using the swap method and the swap template function;
-- Construction of a singly linked list based on initializer_list. The sequence of elements of the created list and the initializer_list is the same;
-- Robust copy constructor and assignment operator. The assignment operator provides a strong exception safety guarantee. If an exception is thrown during the assignment, the contents of the left argument of the assignment operation remain unchanged.
-- The PushFront method provides a strong exception safety guarantee: if an exception is thrown while the method is running, the state of the list will remain the same as before the method was called.
-- The Clear method clears the list and does not throw exceptions.
-- PopFront method. Removes the first element of a non-empty list in O(1) time. Does not throw exceptions.
-- InsertAfter method. In O(1) time, it inserts a new value into the list after the element referenced by the iterator passed to InsertAfter. The method provides a strong exception safety guarantee.
-- EraseAfter method. In O(1) time, it removes from the list the element following the element referenced by the iterator passed to InsertAfter. Does not throw exceptions.
-- Methods before_begin and cbefore_begin. Return iterators that refer to a dummy position before the first element of the list. This iterator is used as a parameter for the InsertAfter and EraseAfter methods when you need to insert or remove an element at the beginning of the list.
+В классе списка разработана поддержка перебора элементов контейнера SingleLinkedList посредством шаблонного класса BasicIterator, на основе которого объявлены константный и неконстантный итераторы списка.
+В классе списка также реализованы константная и неконстантная версии методов begin и end, которые возвращают итераторы на первый элемент контейнера и позицию, следующую за последним элементом. Чтобы получать константные итераторы было удобно, реализованы методы cbegin и cend.
 
-## Assembly and installation
-Build using any IDE or build from the command line
 
-## System requirements
-C++ compiler supporting C++17 standard or later
+**В классе односвязного списка реализован следующий функционал:**
+- Операции сравнения ==, !=, <, >, <=, >=;
+- Обмен содержимого двух списков с использованием метода swap и шаблонной функции swap;
+- Конструирование односвязного списка на основе initializer_list. Последовательность элементов созданного списка и initializer_list одинакова;
+- Надёжные конструктор копирования и операция присваивания. Операция присваивания обеспечивает строгую гарантию безопасности исключений. Если в процессе присваивания будет выброшено исключение, содержимое левого аргумента операции присваивания остаётся без изменений.
+- Метод PushFront предоставляет строгую гарантию безопасности исключений: если в процессе работы метода будет выброшено исключение, состояние списка останется таким же, как до вызова метода.
+- Метод Clear очищает список и не выбрасывает исключений.
+- Метод PopFront. Удаляет первый элемента непустого списка за время O(1). Не выбрасывает исключений.
+- Метод InsertAfter. За время O(1) вставляет в список новое значение следом за элементом, на который ссылается переданный в InsertAfter итератор. Метод обеспечивает строгую гарантию безопасности исключений.
+- Метод EraseAfter. За время O(1) удаляет из списка элемент, следующий за элементом, на который ссылается переданный в InsertAfter итератор. Не выбрасывает исключений.
+- Методы before_begin и cbefore_begin. Возвращают итераторы, ссылающиеся на фиктивную позицию перед первым элементом списка. Такой итератор используется как параметр для методов InsertAfter и EraseAfter, когда нужно вставить или удалить элемент в начале списка.
+
+## Сборка и установка
+Сборка с помощью любой IDE либо сборка из командной строки
+
+## Системные требования
+Компилятор С++ с поддержкой стандарта C++17 или новее
